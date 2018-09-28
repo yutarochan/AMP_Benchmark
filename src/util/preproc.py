@@ -25,7 +25,7 @@ if __name__ == '__main__':
     RAW_DIR = '../../data/raw/'
     AMP_DIR = RAW_DIR + 'ADP3.csv'
     DAMPD_DIR = RAW_DIR + 'DAMPD.csv'
-    OUT_DIR = '../../data/merge/data.csv'
+    OUT_DIR = '../../data/proc/data.csv'
 
     # Read CSV Data
     amp_raw = read_csv(AMP_DIR, id='A')
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     print()
 
     # Append PepType Column (Set All Real)
-    output = list(map(lambda x: x + ['R'], replaced))
+    output = list(map(lambda x: x + ['REAL'], replaced))
 
     # Generate Output File
     out = open(OUT_DIR, 'w')

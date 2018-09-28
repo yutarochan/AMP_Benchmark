@@ -5,9 +5,9 @@ Author: Yuya Jeremy Ong (yjo5006@psu.edu)
 from __future__ import print_function
 
 # Application Parameters
-DATA_DIR = '../../data/merge/'
-INPUT_DIR = DATA_DIR + 'data.csv'
-OUTPUT_DIR = '../../data/fasta/data.fasta.txt'
+DATA_DIR = '../../data/proc/'
+INPUT_DIR = DATA_DIR + 'data2.csv'
+OUTPUT_DIR = '../../data/fasta/data2.fasta.txt'
 
 def read_csv(dir, ignore_header=True):
     st = 1 if ignore_header else 0
