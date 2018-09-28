@@ -97,7 +97,6 @@ class AMPA:
         results = []
         for st, ed in self._batch():
             results.append(self.process_job(self.data[st:ed]))
-
         return results
 
 def read_fasta(data_dir):
@@ -113,4 +112,4 @@ if __name__ == '__main__':
 
     # Unit Test Functions
     server = AMPA(data)
-    server.predict()
+    res = server.predict()
