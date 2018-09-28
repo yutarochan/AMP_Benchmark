@@ -43,7 +43,7 @@ if __name__ == '__main__':
     # Process Negative Samples
     neg_pep = []
     for d in data:
-        if d[1] == 0:
+        if d[1] == 1:
             # Reversed Sequence
             neg_pep.append([d[0]+'R', 0, reverse_seq(d[2]), 'REVERSE'])
 

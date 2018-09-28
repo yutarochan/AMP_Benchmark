@@ -45,6 +45,11 @@ class AMPA:
         req = requests.get(RESULT_URL + job_id + '/data.csv')
         return req.text
 
+    # Parse CSV String
+    def _parse_csv(self, data):
+        raw = data.split('\n')[:-1]
+        return [r.split(',') for r in raw]
+
     # Single Job Submission Function
     def process_job(self, data):
         # Build Payload
@@ -65,22 +70,35 @@ class AMPA:
             while self._checkJobStatus(job_id) == 'Running':
                 time.sleep(self.status_time)  # Wait 10 Seconds
                 if self._checkJobStatus(job_id) == 'Done' or self._checkJobStatus(job_id) == 'Failed':
-                    print(self._checkJobStatus(job_id))
                     break
 
             # Obtain Prediction Results
-            # TODO: Implement CSV Parser and Return as List
             if self._checkJobStatus(job_id) == 'Done':
-                return self._getResult(job_id)
+                # Note: Result set only provides positive examples.
+                result = self._parse_csv(self._getResult(job_id))
+                pos_res = {r[0] : 1 - (float(r[5][:-1]) / 100) for r in result}
+
+                # Aggregate Results
+                res = []
+                for id in data[::2]:
+                    label = 1 if id[1:] in pos_res else 0
+                    prob = pos_res[id[1:]] if id[1:] in pos_res else 0.0
+                    res.append([id[1:], label, prob])
+                return res # [PepID, Label, Prob]
 
             # TODO: Throw exception here if it fails!
+
             return None
         except Exception as e:
             print(e)
 
     # Prediction Function
     def predict(self):
-        return None
+        results = []
+        for st, ed in self._batch():
+            results.append(self.process_job(self.data[st:ed]))
+
+        return results
 
 def read_fasta(data_dir):
     return open(data_dir, 'r').read().split('\n')[:-1]
@@ -95,9 +113,4 @@ if __name__ == '__main__':
 
     # Unit Test Functions
     server = AMPA(data)
-
-    # Test 1: Generator Function Test
-    # for i in server.batch(): print(i)
-
-    # Test 2: Single Job Submission Test
-    server.process_job(data[0:10])
+    server.predict()
