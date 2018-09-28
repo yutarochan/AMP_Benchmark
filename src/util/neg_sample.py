@@ -51,6 +51,7 @@ if __name__ == '__main__':
             for k in range(1, 4):
                 neg_pep.append([d[0]+'R'+str(k), 0, shuffle_seq(d[2], k), 'RANDOM'+str(k)])
 
+    # TODO: Ask whether to merge the positive examples together with the negative samples.
     data += neg_pep
 
     print('Generated Fake Data:\t' + str(len(neg_pep)))
