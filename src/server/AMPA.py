@@ -18,7 +18,7 @@ class AMPA:
     def __init__(self, fasta_data, batch_size=50, window=7, threshold=0.225, status_time=10):
         # Class Parameters
         self.data = fasta_data
-        self.batch_size = batch_size
+        self.batch_size = batch_size * 2
         self.status_time = status_time
 
         # Server Parameters
