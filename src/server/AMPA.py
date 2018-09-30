@@ -14,7 +14,7 @@ ACTION_URL = ROOT_URL + 'do:ampa'
 STATUS_URL = ROOT_URL + 'status'
 RESULT_URL = 'http://tcoffee.crg.cat/data/'
 
-class AMPA:
+class AMPA(object):
     def __init__(self, fasta_data, batch_size=50, window=7, threshold=0.225, status_time=10):
         # Class Parameters
         self.data = fasta_data

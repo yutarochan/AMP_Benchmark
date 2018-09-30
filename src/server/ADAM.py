@@ -1,4 +1,4 @@
-    '''
+'''
 ADAM - Batch Prediction Routine
 Author: Yuya Jeremy Ong (yjo5006@psu.edu)
 '''
