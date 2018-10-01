@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # Process Predictions
     if args.model == 'ALL' or args.model == 'AMPA':
         print('[PROCESSING: AMPA]')
-        srv = AMPA.AMPA(data[100:200], batch_size=args.batch_size)
+        srv = AMPA.AMPA(data, batch_size=args.batch_size)
         write_log(args.out + '/' + args.data.split('.')[2].split('/')[-1] + '_AMPA.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'DBAASP':
