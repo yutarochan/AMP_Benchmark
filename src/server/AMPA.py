@@ -78,10 +78,16 @@ class AMPA(object):
             if self._checkJobStatus(job_id) == 'Done':
                 # Note: Result set only provides positive examples.
                 result = self._parse_csv(self._getResult(job_id))
-                pos_res = {r[0] : 1 - (float(r[5][:-1]) / 100) for r in result}
+                
+                pos_res = {}
+                for r in result:
+                    if r[0] in pos_res
+                        if pos_res[r[0]] > 1 - (float(r[5][:-1]) / 100):
+                            r[0] = 1 - (float(r[5][:-1]) / 100)
+                    else:
+                        pos_res[r[0]] = 1 - (float(r[5][:-1]) / 100)
 
                 # Aggregate Results
-                # TODO: Utilize maximum results for the largest result set.
                 res = []
                 for id in data[::2]:
                     label = 1 if id[1:] in pos_res else 0
