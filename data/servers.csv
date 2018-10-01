@@ -1,0 +1,9 @@
+sid,name,url
+1,AMPA,http://tcoffee.crg.cat/apps/ampa/do
+2,DBAASP,https://dbaasp.org/prediction
+3,ADAM_SVM,http://bioinformatics.cs.ntou.edu.tw/ADAM/svm_tool.html
+4,ADAM_HMM,http://bioinformatics.cs.ntou.edu.tw/ADAM/hmm_tool.html
+5,CAMPR3_SVM,http://www.camp.bicnirrh.res.in/predict/
+6,CAMPR3_RF,http://www.camp.bicnirrh.res.in/predict/
+7,CAMPR3_ANN,http://www.camp.bicnirrh.res.in/predict/
+8,CAMPR3_DA,http://www.camp.bicnirrh.res.in/predict/

@@ -15,7 +15,7 @@ STATUS_URL = ROOT_URL + 'status'
 RESULT_URL = 'http://tcoffee.crg.cat/data/'
 
 class AMPA(object):
-    def __init__(self, fasta_data, batch_size=50, window=7, threshold=0.225, status_time=10):
+    def __init__(self, fasta_data, batch_size=50, window=7, threshold=0.225, status_time=15):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
@@ -58,7 +58,7 @@ class AMPA(object):
             'window' : self.window,
             'threshold' : self.threshold
         }
-
+        
         try:
             # Submit POST Request - Return JobID
             req = requests.post(ACTION_URL, params=body_data)
@@ -87,6 +87,8 @@ class AMPA(object):
                 return res # [PepID, Label, Prob]
 
             # TODO: Throw exception here if it fails!
+            if self._checkJobStatus(job_id) == 'Failed':
+                print('>> SUBMISSION FAILED!')
 
             return None
         except Exception as e:
@@ -96,7 +98,7 @@ class AMPA(object):
     def predict(self):
         results = []
         for st, ed in self._batch():
-            results.append(self.process_job(self.data[st:ed]))
+            results += self.process_job(self.data[st:ed])
         return results
 
 def read_fasta(data_dir):

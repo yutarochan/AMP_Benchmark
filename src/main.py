@@ -36,7 +36,10 @@ def read_fasta(data_dir):
     return open(data_dir, 'r').read().split('\n')[:-1]
 
 def write_log(out_dir, data):
-    return None
+    out = open(out_dir, 'w')
+    out.write('PepID,AMPLabel,Prob\n')
+    for d in data: out.write(d[0] + ',' + str(d[1]) + ',' + str(d[2]) + '\n')
+    out.close()
 
 if __name__ == '__main__':
     args = parse_arg()          # Parse Arguments
@@ -44,17 +47,50 @@ if __name__ == '__main__':
 
     # Load Dataset
     print('> LOADING DATA FILE: ' + str(args.data))
-    if args.data is not None: data = read_fasta(args.data)
-    else: print('> ERROR: Please provide valid FASTA dataset path.')
+    if args.data is not None:
+        data = read_fasta(args.data)
+    else:
+        print('> ERROR: Please provide valid FASTA dataset path.')
+        sys.exit()
     print('> LOADED ' + str(len(data)) + ' AMP SAMPLES\n')
 
     # Process Predictions
     if args.model == 'ALL' or args.model == 'AMPA':
         print('[PROCESSING: AMPA]')
-        srv = AMPA.AMPA(data, batch_size=args.batch_size)
-        write_log(args.out + '/' + args.data.split('.')[0] + '_AMPA.csv', srv.predict())
+        srv = AMPA.AMPA(data[100:200], batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[2].split('/')[-1] + '_AMPA.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'DBAASP':
         print('[PROCESSING: DBAASP]')
         srv = DBAASP.DBAASP(data, batch_size=args.batch_size)
         write_log(args.out + '/' + args.data.split('.')[0] + '_DBAASP.csv', srv.predict())
+
+    if args.model == 'ALL' or args.model == 'ADAM_SVM':
+        print('[PROCESSING: ADAM_SVM]')
+        srv = ADAM.ADAM(data, mode='SVM', batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[0] + '_ADAM-SVM.csv', srv.predict())
+
+    if args.model == 'ALL' or args.model == 'ADAM_HMM':
+        print('[PROCESSING: ADAM_HMM]')
+        srv = ADAM.ADAM(data, mode='HMM', batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[0] + '_ADAM-HMM.csv', srv.predict())
+
+    if args.model == 'ALL' or args.model == 'CMPR3_SVM':
+        print('[PROCESSING: CAMPR3_SVM]')
+        srv = CAMPR3.CAMPR3(data, mode='SVM', batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[0] + '_CAMPR3-SVM.csv', srv.predict())
+
+    if args.model == 'ALL' or args.model == 'CMPR3_RF':
+        print('[PROCESSING: CAMPR3_RF]')
+        srv = CAMPR3.DBAASP(data, mode='RF', batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[0] + '_CAMPR3-RF.csv', srv.predict())
+
+    if args.model == 'ALL' or args.model == 'CMPR3_ANN':
+        print('[PROCESSING: CAMPR3_ANN]')
+        srv = CAMPR3.CAMPR3(data, mode='ANN', batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[0] + '_CAMPR3-ANN.csv', srv.predict())
+
+    if args.model == 'ALL' or args.model == 'CMPR3_DA':
+        print('[PROCESSING: CAMPR3_DA]')
+        srv = CAMPR3.CAMPR3(data, mode='DA', batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('.')[0] + '_CAMPR3-DA.csv', srv.predict())

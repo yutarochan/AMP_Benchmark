@@ -35,6 +35,8 @@ class ADAM:
             'postman-token': "eac16bc2-9991-f352-5f45-35e8968410af"
         }
 
+        # print(data)
+
         out = []
         try:
             # Submit POST Request - Return JobID
@@ -59,6 +61,8 @@ class ADAM:
     def predict(self):
         results = []
         for i, (st, ed) in enumerate(self._batch()):
+            # if i != 102: continue
+            # print(st, ed)
             print('> PROCESSING BATCH #' + str(i))
             results.append(self.process_job(self.data[st:ed]))
         return results
@@ -75,5 +79,6 @@ if __name__ == '__main__':
     data = read_fasta(DATA_DIR)
 
     # Unit Test Functions
-    server = ADAM(data, mode='HMM')
+    server = ADAM(data, mode='SVM')
     server.predict()
+    # server.process_job(data[10240:10244])
