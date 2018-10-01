@@ -78,10 +78,10 @@ class AMPA(object):
             if self._checkJobStatus(job_id) == 'Done':
                 # Note: Result set only provides positive examples.
                 result = self._parse_csv(self._getResult(job_id))
-                
+
                 pos_res = {}
                 for r in result:
-                    if r[0] in pos_res
+                    if r[0] in pos_res:
                         if pos_res[r[0]] > 1 - (float(r[5][:-1]) / 100):
                             r[0] = 1 - (float(r[5][:-1]) / 100)
                     else:

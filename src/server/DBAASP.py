@@ -18,11 +18,12 @@ FORM_URL = ROOT_URL + 'prediction'
 ACTION_URL = ROOT_URL + 'utility/general-prediction'
 
 class DBAASP:
-    def __init__(self, fasta_data, batch_size=50, wait=5):
+    def __init__(self, fasta_data, batch_size=50, wait=5, sleep=5):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
         self.wait_time = wait
+        self.sleep = sleep
 
     def _batch(self):
         for i in range(0, len(self.data), self.batch_size):
@@ -32,8 +33,11 @@ class DBAASP:
         # Initialize Selenium Web Driver
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        driver = webdriver.Chrome(chrome_options=chrome_options)
+        # chrome_options=chrome_options
+        driver = webdriver.Chrome()
         driver.get(FORM_URL)
+
+        time.sleep(5)
 
         res = []
         try:
@@ -62,11 +66,26 @@ class DBAASP:
 
         return res
 
+    def _binf(self, data):
+        res = self.process_job(data)
+        if len(data) == 2 and len(res) == 0: return []
+        if len(res) > 0: return res
+
+        time.sleep(self.sleep)
+        mid = int(len(data)/2) + 1 if int(len(data)/2) % 2 != 0 else int(len(data)/2)
+        return self._binf(data[:mid]) + self._binf(data[mid:])
+
     def predict(self):
         results = []
         for i, (st, ed) in enumerate(self._batch()):
             print('> PROCESSING BATCH #' + str(i))
-            results.append(self.process_job(self.data[st:ed]))
+            res = None
+            while True:
+                res = self._binf(self.data[st:ed])
+                if len(res) > 0: break
+                print('ERROR, RETRYING...')
+                time.sleep(self.sleep)
+            results += res
         return results
 
 def read_fasta(data_dir):

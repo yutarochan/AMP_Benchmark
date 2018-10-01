@@ -8,6 +8,7 @@ import argparse
 from server import ADAM, AMPA, CAMPR3, DBAASP
 
 def parse_arg():
+    # TODO: Consider index/ID based batch processing. Give parameter to start from certain indexself.
     parser = argparse.ArgumentParser()
     parser.add_argument("--ls", action="store_true", help="List all available servers.")
     parser.add_argument('--data', type=str, help='Path to dataset (Must be in FASTA format).')
@@ -55,25 +56,25 @@ if __name__ == '__main__':
     print('> LOADED ' + str(len(data)) + ' AMP SAMPLES\n')
 
     # Process Predictions
-    if args.model == 'ALL' or args.model == 'AMPA':
+    if args.model == 'ALL' or args.model == 'AMPA':     # PARTIALLY-VERIFIED (NON-ROBUST/STABLE)
         print('[PROCESSING: AMPA]')
         srv = AMPA.AMPA(data, batch_size=args.batch_size)
-        write_log(args.out + '/' + args.data.split('.')[2].split('/')[-1] + '_AMPA.csv', srv.predict())
+        write_log(args.out + '/' + args.data.split('/')[-1] + '_AMPA.csv', srv.predict())
 
-    if args.model == 'ALL' or args.model == 'DBAASP':
+    if args.model == 'ALL' or args.model == 'DBAASP':   # VERIFIED
         print('[PROCESSING: DBAASP]')
-        srv = DBAASP.DBAASP(data, batch_size=args.batch_size)
-        write_log(args.out + '/' + args.data.split('.')[0] + '_DBAASP.csv', srv.predict())
+        srv = DBAASP.DBAASP(data[:10000], batch_size=args.batch_size)
+        write_log(args.out + '/' + args.data.split('/')[-1] + '_DBAASP.csv', srv.predict())
 
-    if args.model == 'ALL' or args.model == 'ADAM_SVM':
+    if args.model == 'ALL' or args.model == 'ADAM_SVM': # VERIFIED
         print('[PROCESSING: ADAM_SVM]')
         srv = ADAM.ADAM(data, mode='SVM', batch_size=args.batch_size)
-        write_log(args.out + '/' + args.data.split('.')[0] + '_ADAM-SVM.csv', srv.predict())
+        write_log(args.out + '/' + args.data.split('/')[-1] + '_ADAM-SVM.csv', srv.predict())
 
-    if args.model == 'ALL' or args.model == 'ADAM_HMM':
+    if args.model == 'ALL' or args.model == 'ADAM_HMM': # VERIFIED
         print('[PROCESSING: ADAM_HMM]')
         srv = ADAM.ADAM(data, mode='HMM', batch_size=args.batch_size)
-        write_log(args.out + '/' + args.data.split('.')[0] + '_ADAM-HMM.csv', srv.predict())
+        write_log(args.out + '/' + args.data.split('/')[-1] + '_ADAM-HMM.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_SVM':
         print('[PROCESSING: CAMPR3_SVM]')
