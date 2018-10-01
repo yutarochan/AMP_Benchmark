@@ -58,6 +58,7 @@ class ADAM:
         return out  # [PepID, Label, Prob]
 
     # Prediction Function
+    # TODO: Add sleep function so we won't overwhelm the server
     def predict(self):
         results = []
         for i, (st, ed) in enumerate(self._batch()):
