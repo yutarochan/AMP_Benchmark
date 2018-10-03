@@ -15,11 +15,12 @@ from selenium.webdriver.support import expected_conditions as EC
 ROOT_URL = 'http://www.camp.bicnirrh.res.in/predict/'
 
 class CAMPR3:
-    def __init__(self, fasta_data, mode='SVM', batch_size=50):
+    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=5):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
         self.mode = mode    # SVM, RF, ANN, DA
+        self.sleep = sleep
 
     def _get_ids(self, data):
         return data[::2]
@@ -75,6 +76,7 @@ class CAMPR3:
         for i, (st, ed) in enumerate(self._batch()):
             print('> PROCESSING BATCH #' + str(i))
             results.append(self.process_job(self.data[st:ed]))
+            time.sleep(self.sleep)
         return results
 
 def read_fasta(data_dir):

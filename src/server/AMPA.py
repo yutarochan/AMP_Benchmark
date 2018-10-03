@@ -138,7 +138,7 @@ if __name__ == '__main__':
     data = read_fasta(DATA_DIR)
 
     # Unit Test Functions
-    server = AMPA(data[:200])
+    server = AMPA(data[:1000])
     # result = server.process_job(data[100:200])
     res = server.predict()
     print(res)
