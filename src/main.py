@@ -96,17 +96,17 @@ if __name__ == '__main__':
         srv = ADAM.ADAM(data[st:ed], mode='HMM', batch_size=args.batch_size)
         write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_ADAM-HMM.csv', srv.predict())
 
-    if args.model == 'ALL' or args.model == 'CMPR3_SVM':
+    if args.model == 'ALL' or args.model == 'CMPR3_SVM':    # STABLE
         print('[PROCESSING: CAMPR3_SVM]')
         srv = CAMPR3.CAMPR3(data[st:ed], mode='SVM', batch_size=args.batch_size)
         write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-SVM.csv', srv.predict())
 
-    if args.model == 'ALL' or args.model == 'CMPR3_RF':
+    if args.model == 'ALL' or args.model == 'CMPR3_RF':     # STABLE
         print('[PROCESSING: CAMPR3_RF]')
-        srv = CAMPR3.DBAASP(data[st:ed], mode='RF', batch_size=args.batch_size)
+        srv = CAMPR3.CAMPR3(data[st:ed], mode='RF', batch_size=args.batch_size)
         write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-RF.csv', srv.predict())
 
-    if args.model == 'ALL' or args.model == 'CMPR3_ANN':
+    if args.model == 'ALL' or args.model == 'CMPR3_ANN':    # STABLE
         print('[PROCESSING: CAMPR3_ANN]')
         srv = CAMPR3.CAMPR3(data[st:ed], mode='ANN', batch_size=args.batch_size)
         write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-ANN.csv', srv.predict())
