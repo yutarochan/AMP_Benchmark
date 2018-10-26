@@ -33,8 +33,7 @@ class DBAASP:
         # Initialize Selenium Web Driver
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        # chrome_options=chrome_options
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(chrome_options=chrome_options)
         driver.get(FORM_URL)
 
         time.sleep(5)
