@@ -76,59 +76,54 @@ if __name__ == '__main__':
             if st + (args.job_size * 2) >= len(data): ed = len(data)
             else: ed = st + (args.job_size * 2)
         else: ed = len(data)
-    else:
-        missing_data = []
-        print('PROCESSS MISSING')
-
-    sys.exit()
 
     # Process Predictions
     if args.model == 'ALL' or args.model == 'AMPA':     # PARTIALLY-VERIFIED (NON-ROBUST/STABLE)
         print('[PROCESSING: AMPA]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = AMPA.AMPA(data[st:ed], batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed)  + '_AMPA.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'DBAASP':   # VERIFIED
         print('[PROCESSING: DBAASP]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = DBAASP.DBAASP(data[st:ed], batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_DBAASP.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'ADAM_SVM': # VERIFIED
         print('[PROCESSING: ADAM_SVM]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = ADAM.ADAM(data[st:ed], mode='SVM', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_ADAM-SVM.csv', srv.predict())
         else:
-            print('')
+            print('MISSING!')
 
     if args.model == 'ALL' or args.model == 'ADAM_HMM': # VERIFIED
         print('[PROCESSING: ADAM_HMM]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = ADAM.ADAM(data[st:ed], mode='HMM', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_ADAM-HMM.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_SVM':    # STABLE
         print('[PROCESSING: CAMPR3_SVM]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='SVM', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-SVM.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_RF':     # STABLE
         print('[PROCESSING: CAMPR3_RF]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='RF', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-RF.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_ANN':    # STABLE
         print('[PROCESSING: CAMPR3_ANN]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='ANN', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-ANN.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_DA':
         print('[PROCESSING: CAMPR3_DA]')
-        if args.missing is not None:
+        if args.missing == None:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='DA', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-DA.csv', srv.predict())
