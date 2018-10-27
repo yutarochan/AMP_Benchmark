@@ -64,3 +64,23 @@ optional arguments:
   --start_id START_ID   Specify ID for starting index for batch processing.
   --job_size JOB_SIZE   How many samples to submit per job.
 ```
+
+## Scrape Status
+| Dataset                    | Status                       |
+|----------------------------|------------------------------|
+| data.fasta.txt/ADAM_HMM    | In Progress                  |
+| data.fasta.txt/ADAM_SVM    | Complete                     |
+| data.fasta.txt/AMPA        | Complete                     |
+| data.fasta.txt/CAMPR3-ANN  | Complete                     |
+| data.fasta.txt/CAMPR3-DA   | Complete                     |
+| data.fasta.txt/CAMPR3-RF   | Complete                     |
+| data.fasta.txt/CAMPR3-SVM  | Complete                     |
+| data.fasta.txt/DBAASP      | Need to Process Missing List |
+| data2.fasta.txt/ADAM_HMM   | Not Initialized              |
+| data2.fasta.txt/ADAM_SVM   | Not Initialized              |
+| data2.fasta.txt/AMPA       | In Progress                  |
+| data2.fasta.txt/CAMPR3-ANN | Not Initialized              |
+| data2.fasta.txt/CAMPR3-DA  | Not Initialized              |
+| data2.fasta.txt/CAMPR3-RF  | Not Initialized              |
+| data2.fasta.txt/CAMPR3-SVM | Not Initialized              |
+| data2.fasta.txt/DBAASP     | Not Initialized              |
