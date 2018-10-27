@@ -14,7 +14,7 @@ ACTION_URL_HMM = ROOT_URL + 'hmm_predict.php'
 ACTION_URL = ACTION_URL_SVM
 
 class ADAM(object):
-    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=5):
+    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=3):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
@@ -37,8 +37,6 @@ class ADAM(object):
             'postman-token': "eac16bc2-9991-f352-5f45-35e8968410af"
         }
 
-        # print(data)
-
         out = []
         try:
             # Submit POST Request - Return JobID
@@ -46,11 +44,14 @@ class ADAM(object):
 
             # Extract Results Table
             soup = BeautifulSoup(req.text, features="html5lib")
+            if len(list(soup.find_all('tbody'))) == 1: return None
             table = list(soup.find_all('tbody')[1])[1:]
 
             # Format Result
+            ids = list(map(lambda x: x[1:], data[::2]))
             for t in table:
                 row = [i.text for i in t.find_all('td')]
+                if row[0] not in ids: continue
                 if row[3] == 'AMP': out.append([row[0], 1, 1.0])
                 elif row[3] == 'Non AMP': out.append([row[0], 0, 0.0])
 
