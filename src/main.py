@@ -89,6 +89,9 @@ if __name__ == '__main__':
         if args.missing == False:
             srv = DBAASP.DBAASP(data[st:ed], batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_DBAASP.csv', srv.predict())
+        else:
+            srv = DBAASP.DBAASP(data, batch_size=args.batch_size)
+            write_log(args.out + '/' + args.data.split('/')[-1] + '_MISSING_DBAASP.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'ADAM_SVM': # VERIFIED
         print('[PROCESSING: ADAM_SVM]')
