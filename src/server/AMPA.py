@@ -16,7 +16,7 @@ STATUS_URL = ROOT_URL + 'status'
 RESULT_URL = 'http://tcoffee.crg.cat/data/'
 
 class AMPA(object):
-    def __init__(self, fasta_data, batch_size=50, window=7, threshold=0.225, status_time=15, sleep=5):
+    def __init__(self, fasta_data, batch_size=50, window=7, threshold=0.225, status_time=5, sleep=2):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
