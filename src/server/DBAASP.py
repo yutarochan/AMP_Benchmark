@@ -66,6 +66,8 @@ class DBAASP:
         return res
 
     def _binf(self, data):
+        data_id = [i[1:] for i in data[::2]]
+        print('>> IDs: ' + str(data_id))
         res = self.process_job(data)
         if len(data) == 2 and len(res) == 0: return []
         if len(res) > 0: return res
@@ -78,12 +80,13 @@ class DBAASP:
         results = []
         for i, (st, ed) in enumerate(self._batch()):
             print('> PROCESSING BATCH #' + str(i))
-            res = None
-            while True:
-                res = self._binf(self.data[st:ed])
-                if len(res) > 0: break
-                print('ERROR, RETRYING...')
-                time.sleep(self.sleep)
+            res = self._binf(self.data[st:ed])
+            res_id = [i[0] for i in res]
+
+            # Impute Unavailable Results (with -999)
+            for id in self.data[st:ed][::2]:
+                if id[1:] not in res_id: res.append([id[1:], -999, -999])
+
             results += res
         return results
 
