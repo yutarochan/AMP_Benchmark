@@ -58,17 +58,35 @@ optional arguments:
   --ls                  List all available servers.
   --data DATA           Path to dataset (Must be in FASTA format).
   --out OUT             Path to result output.
-  --model MODEL         Model server to use. (Use ls to find the model names).
+  --model MODEL         Model server to use. (Use --ls to find the model names).
   --batch_size BATCH_SIZE
                         Number of data to handle per batch transaction.
   --start_id START_ID   Specify ID for starting index for batch processing.
   --job_size JOB_SIZE   How many samples to submit per job.
 ```
 
+## Server Scrape Process
+The following section describes the whole scraping process and explains how to utilize the scripts in this repository.
+
+1. The initial scraping process can be performed by running the following script:
+```
+python3 main.py --data <path-to-fasta-txt> --out <path-to-result-folder> --model <model name> --batch_size <use 10000>
+```
+Note that you don't have to specify the `--start_id` for first time runs, as it will always start at the first record in the dataset.
+
+2. For subsequent runs, run the following script by adding the `--start_id` flag followed by the `PepID` you want to start running the script from. You can find the corresponding next PepID by going into the results, finding the last `PepID` and just shifting the index up by 1. For example, say if the last batch ended with `A00100`, then the next `--start_id` would have the value `A001001`.
+```
+python3 main.py --data <path-to-fasta-txt> --out <path-to-result-folder> --model <model name> --batch_size <use 10000> --start_id <PepID start index>
+```
+
+3. Always check to see if there are any odd signs of failure - there can be cases where a whole mini-batch may have failed (i.e. some blocks of -999 has occured). In this case you may have to wait for a bit (due to server overload), and re-run that particular set again. (More on this during our next meeting).
+
+4. Make sure you frequently pull + push to this repository so that the results you have are constantly backed up and synced up.
+
 ## Scrape Status
 | Dataset                    | Status                       |
 |----------------------------|------------------------------|
-| data.fasta.txt/ADAM_HMM    | In Progress                  |
+| data.fasta.txt/ADAM_HMM    | Complete                     |
 | data.fasta.txt/ADAM_SVM    | Complete                     |
 | data.fasta.txt/AMPA        | Complete                     |
 | data.fasta.txt/CAMPR3-ANN  | Complete                     |
