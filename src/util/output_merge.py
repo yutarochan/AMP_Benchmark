@@ -20,10 +20,9 @@ if __name__ == '__main__':
     # Build Data Dict
     data = {}
     proc = open(args.proc, 'r').read().split('\n')[1:-1]
-    for i in range(0, len(proc), 2):
+    for i in range(0, len(proc)):
         row = proc[i].replace('\n', '').split(',')
-        type = proc[i+1].replace(',','').replace('\n','')
-        data[row[0]] = {'PepSeq' : row[2], 'PepType' : type, 'AMPLabel' : row[1]}
+        data[row[0]] = {'PepSeq' : row[2], 'PepType' : row[3], 'AMPLabel' : row[1]}
 
     # Merge with Predictions
     pred = open(args.res, 'r').read().split('\n')[1:-1]
