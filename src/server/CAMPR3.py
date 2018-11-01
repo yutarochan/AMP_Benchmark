@@ -32,9 +32,9 @@ class CAMPR3:
 
     def process_job(self, data):
         # Initialize Selenium Web Driver
-        # chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        driver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        driver = webdriver.Chrome(chrome_options=chrome_options)
         driver.get(ROOT_URL)
 
         res = []
