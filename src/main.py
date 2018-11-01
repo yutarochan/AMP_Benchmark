@@ -112,7 +112,7 @@ if __name__ == '__main__':
         print('[PROCESSING: CAMPR3_SVM]')
         if args.missing == False:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='SVM', batch_size=args.batch_size)
-            write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-SVM.csv', srv.predict())
+            write_log(args.out + '/' + 'CAMPR3-SVM' + '_' + str(st) + '_' + str(ed) + '.csv', srv.predict())
         else:
             srv = CAMPR3.CAMPR3(data, mode='SVM', batch_size=args.batch_size)
             write_log(args.out + '/' + args.data.split('/')[-1] + '_MISSING_CAMPR3-SVM.csv', srv.predict())
