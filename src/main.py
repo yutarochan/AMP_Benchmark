@@ -121,16 +121,16 @@ if __name__ == '__main__':
         print('[PROCESSING: CAMPR3_RF]')
         if args.missing == False:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='RF', batch_size=args.batch_size)
-            write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-RF.csv', srv.predict())
+            write_log(args.out + '/' + 'CAMPR3-RF' + '_' + str(st) + '_' + str(ed) + '.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_ANN':    # STABLE
         print('[PROCESSING: CAMPR3_ANN]')
         if args.missing == False:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='ANN', batch_size=args.batch_size)
-            write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-ANN.csv', srv.predict())
+            write_log(args.out + '/' + 'CAMPR3-ANN' + '_' + str(st) + '_' + str(ed) + '.csv', srv.predict())
 
     if args.model == 'ALL' or args.model == 'CMPR3_DA':
         print('[PROCESSING: CAMPR3_DA]')
         if args.missing == False:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='DA', batch_size=args.batch_size)
-            write_log(args.out + '/' + args.data.split('/')[-1] + '_' + str(st) + '_' + str(ed) + '_CAMPR3-DA.csv', srv.predict())
+            write_log(args.out + '/' + 'CAMPR3-DA' + '_' + str(st) + '_' + str(ed) + '.csv', srv.predict())
