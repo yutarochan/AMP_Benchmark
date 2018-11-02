@@ -93,7 +93,7 @@ python3 main.py --data <path-to-fasta-txt> --out <path-to-result-folder> --model
 | data.fasta.txt/CAMPR3-DA   | Complete                     |
 | data.fasta.txt/CAMPR3-RF   | Complete                     |
 | data.fasta.txt/CAMPR3-SVM  | Complete                     |
-| data.fasta.txt/DBAASP      | Need to Process Missing List |
+| data.fasta.txt/DBAASP      | Complete                     |
 | data2.fasta.txt/ADAM_HMM   | In Progress                  |
 | data2.fasta.txt/ADAM_SVM   | Not Initialized              |
 | data2.fasta.txt/AMPA       | Complete                     |
