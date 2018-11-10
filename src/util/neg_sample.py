@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # Application Parameters
     DATA_DIR = '../../data/proc/'
     INPUT_DIR = DATA_DIR + 'data.csv'
-    OUT_DIR = DATA_DIR + 'data2.csv'
+    OUT_DIR = DATA_DIR + 'data3.csv'
 
     # Read CSV File
     data = read_csv(INPUT_DIR)

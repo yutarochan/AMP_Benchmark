@@ -6,8 +6,8 @@ from __future__ import print_function
 
 # Application Parameters
 DATA_DIR = '../../data/proc/'
-INPUT_DIR = DATA_DIR + 'data2.csv'
-OUTPUT_DIR = '../../data/fasta/data2.fasta.txt'
+INPUT_DIR = DATA_DIR + 'data3.csv'
+OUTPUT_DIR = '../../data/fasta/data3.fasta.txt'
 
 def read_csv(dir, ignore_header=True):
     st = 1 if ignore_header else 0
