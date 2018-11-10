@@ -134,3 +134,6 @@ if __name__ == '__main__':
         if args.missing == False:
             srv = CAMPR3.CAMPR3(data[st:ed], mode='DA', batch_size=args.batch_size)
             write_log(args.out + '/' + 'CAMPR3-DA' + '_' + str(st) + '_' + str(ed) + '.csv', srv.predict())
+        else:
+            srv = CAMPR3.CAMPR3(data, mode='DA', batch_size=args.batch_size)
+            write_log(args.out + '/' + 'MISSING_CMPR3-DA.csv', srv.predict())
