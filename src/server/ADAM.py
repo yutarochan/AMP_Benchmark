@@ -14,7 +14,7 @@ ACTION_URL_HMM = ROOT_URL + 'hmm_predict.php'
 ACTION_URL = ACTION_URL_SVM
 
 class ADAM(object):
-    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=3):
+    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=2):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
@@ -49,6 +49,7 @@ class ADAM(object):
 
             # Format Result
             ids = list(map(lambda x: x[1:], data[::2]))
+            print(ids)
             for t in table:
                 row = [i.text for i in t.find_all('td')]
                 if row[0] not in ids: continue
