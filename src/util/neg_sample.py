@@ -3,6 +3,7 @@ Negative Sample Generator
 Author: Yuya Jeremy Ong (yjo5006@psu.edu)
 '''
 from __future__ import print_function
+import sys
 import math
 import random
 
@@ -24,18 +25,18 @@ def shuffle_seq(s, k=1):
 def read_csv(dir, ignore_header=True):
     st = 1 if ignore_header else 0
     data = open(dir, 'r').read().split('\n')[st:-1]
+
     raw_data = []
-    for d in data:
-        r = d.split(',')
-        r[1] = int(r[1])
-        raw_data.append(r)
+    for i in range(0, len(data), 2):
+        raw_data.append(data[i].split(',') + [data[i+1].split(',')[1]])
+
     return raw_data
 
 if __name__ == '__main__':
     # Application Parameters
     DATA_DIR = '../../data/proc/'
     INPUT_DIR = DATA_DIR + 'data.csv'
-    OUT_DIR = DATA_DIR + 'data2.csv'
+    OUT_DIR = DATA_DIR + 'data3.csv'
 
     # Read CSV File
     data = read_csv(INPUT_DIR)
@@ -43,7 +44,8 @@ if __name__ == '__main__':
     # Process Negative Samples
     neg_pep = []
     for d in data:
-        if d[1] == 1:
+        print(d)
+        if d[1] == '1':
             # Reversed Sequence
             neg_pep.append([d[0]+'R', 0, reverse_seq(d[2]), 'REVERSE'])
 
@@ -52,7 +54,7 @@ if __name__ == '__main__':
                 neg_pep.append([d[0]+'R'+str(k), 0, shuffle_seq(d[2], k), 'RANDOM'+str(k)])
 
     # TODO: Ask whether to merge the positive examples together with the negative samples.
-    data += neg_pep
+    data = neg_pep
 
     print('Generated Fake Data:\t' + str(len(neg_pep)))
     print('Total Sample Size:\t' + str(len(data)))
