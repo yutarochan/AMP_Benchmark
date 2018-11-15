@@ -18,11 +18,6 @@ if __name__ == '__main__':
     # Read CSV File
     data = read_csv(INPUT_DIR)
 
-    for d in data:
-        if '\n' in d[1]:
-            print(d)
-
-    '''
     # FASTA File Generate Output
     out = open(OUTPUT_DIR, 'w')
     for d in data:
@@ -31,4 +26,3 @@ if __name__ == '__main__':
     out.close()
 
     print('Output File: ' + OUTPUT_DIR)
-    '''
