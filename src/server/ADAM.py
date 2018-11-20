@@ -14,7 +14,7 @@ ACTION_URL_HMM = ROOT_URL + 'hmm_predict.php'
 ACTION_URL = ACTION_URL_SVM
 
 class ADAM(object):
-    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=5):
+    def __init__(self, fasta_data, mode='SVM', batch_size=50, sleep=10):
         # Class Parameters
         self.data = fasta_data
         self.batch_size = batch_size * 2
