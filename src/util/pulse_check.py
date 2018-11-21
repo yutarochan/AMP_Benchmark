@@ -86,6 +86,14 @@ class ADAM(object):
 
         return results
 
+def out_message(message, face=0):
+    print('(\__/)')
+    if face == 0: print('(•ㅅ•)    -\t' + message)
+    elif face == 1: print('(TㅅT)    -\t' + message)
+    elif face == 2: print('(>ㅅ<)    -\t' + message)
+    print('/ 　 づ')
+    print('\n')
+
 if __name__ == '__main__':
     # Setup Notification Object
     notify2.init("PulseCheck")
@@ -98,13 +106,17 @@ if __name__ == '__main__':
 
     # Pulse Check Loop
     while True:
+        out_message('I\'m gonna test the server...', 0)
+
         server = ADAM(payload, mode='SVM')
         res = server.predict()
 
         if res[0][1] == -999:
             n.update('Server Puse Check', 'ADAM is currently OFFLINE')
+            out_message('Looks like Adam is dead...', 1)
         else:
             n.update('Server Puse Check', 'ADAM is currently ONLINE')
+            out_message('Adam is alive!', 2)
 
         n.show()
 
