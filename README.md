@@ -82,23 +82,3 @@ python3 main.py --data <path-to-fasta-txt> --out <path-to-result-folder> --model
 3. Always check to see if there are any odd signs of failure - there can be cases where a whole mini-batch may have failed (i.e. some blocks of -999 has occured). In this case you may have to wait for a bit (due to server overload), and re-run that particular set again. (More on this during our next meeting).
 
 4. Make sure you frequently pull + push to this repository so that the results you have are constantly backed up and synced up.
-
-## Scrape Status
-| Dataset                    | Status                       |
-|----------------------------|------------------------------|
-| data.fasta.txt/ADAM_HMM    | Complete                     |
-| data.fasta.txt/ADAM_SVM    | Complete                     |
-| data.fasta.txt/AMPA        | Complete                     |
-| data.fasta.txt/CAMPR3-ANN  | Complete                     |
-| data.fasta.txt/CAMPR3-DA   | Complete                     |
-| data.fasta.txt/CAMPR3-RF   | Complete                     |
-| data.fasta.txt/CAMPR3-SVM  | Complete                     |
-| data.fasta.txt/DBAASP      | Complete                     |
-| data2.fasta.txt/ADAM_HMM   | Complete                     |
-| data2.fasta.txt/ADAM_SVM   | Complete                     |
-| data2.fasta.txt/AMPA       | Complete                     |
-| data2.fasta.txt/CAMPR3-ANN | Complete                     |
-| data2.fasta.txt/CAMPR3-DA  | Process Missing Data         |
-| data2.fasta.txt/CAMPR3-RF  | Complete                     |
-| data2.fasta.txt/CAMPR3-SVM | Not Initialized              |
-| data2.fasta.txt/DBAASP     | In Progress                  |
