@@ -1,5 +1,33 @@
-# DS320
+# AMP Benchmark
 Anti-Microbial Peptide Classification Benchmark Utility
+
+## Introduction
+Recently, the research for Antimicrobial Peptides (AMP) has become a critical component
+of developing new and novel agents necessary for fighting against new strain of
+drug-resistant microbes like bacteria and fungi. However, for researchers to be
+able to experiment with various strains of these AMPs require lots of time and
+expensive costs to test the validity of each variant - and thus not a scalable in
+practice.
+
+To reduce the overall search space for the possible AMPs to experiment on, researchers
+have turned to machine learning and computational model-based approaches for determining
+if a given sequence of proteins are in fact AMPs or Non-AMPs. Currently, there are
+various online web-services which allow for researchers to classify whether the
+given sequences are AMPs. Using these services, they can immensely accelerate their work.
+
+However, one critical concern for these models is the validity of their robustness
+and integrity with regard to their prediction accuracy. Thus, a careful review of
+each of these services would need to be evaluated to ensure that the reported
+results from these papers are in fact correct. Furthermore, upon an observation
+of a very small samples which were randomly shuffled, we have found that the
+models have incorrectly misclassified these samples as valid AMPs.
+
+From the basis of this observation, we have curated a synthesized dataset comprised
+of both real AMP sequences, as well as a collection of randomly shuffled AMP sequences
+of various k-groups - establishing a dataset to expose non-robust models. Through
+establishing a proper baseline on this dataset, we will systematically experiment on
+various online services listed by Gabere et. al to formulate a proper baseline and
+devise new models which will attempt to out-perform the state-of-the-art models.
 
 ## Setup
 All code developed under this repository were executed under Python 3.6.6.
@@ -38,8 +66,6 @@ a brief description for each folder and code within the file.
     /result:    All server side results reside here with each sub directory containing folders for each FASTA file,
                 within it contains result output from each model in their respective folders. All merged files are
                 located within the root of the respective FASTA file.
-/docs:  Gitpages for project.
-/files: Contains any reference materials, instructional documents, and project papers (LaTeX files).
 /src:   Source code and utility scripts for project.
     /server:    All code for individual server models.
     /util:      Dataset preprocessing, merging, and file assertion scripts.
@@ -79,6 +105,7 @@ Note that you don't have to specify the `--start_id` for first time runs, as it 
 python3 main.py --data <path-to-fasta-txt> --out <path-to-result-folder> --model <model name> --batch_size <use 10000> --start_id <PepID start index>
 ```
 
-3. Always check to see if there are any odd signs of failure - there can be cases where a whole mini-batch may have failed (i.e. some blocks of -999 has occured). In this case you may have to wait for a bit (due to server overload), and re-run that particular set again. (More on this during our next meeting).
+3. Always check to see if there are any odd signs of failure - there can be cases where a whole mini-batch may have failed (i.e. some blocks of -999 has occured). In this case you may have to wait for a bit (due to server overload), and re-run that particular set again.
 
-4. Make sure you frequently pull + push to this repository so that the results you have are constantly backed up and synced up.
+## References
+* Gabere, M. N., & Noble, W. S. (2017). Empirical comparison of web-based antimicrobial peptide prediction tools. Bioinformatics, 33(13), 1921-1929.
