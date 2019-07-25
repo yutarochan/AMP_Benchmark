@@ -1,33 +1,13 @@
 # AMP Benchmark
 Anti-Microbial Peptide Classification Benchmark Utility
 
-## Introduction
-Recently, the research for Antimicrobial Peptides (AMP) has become a critical component
-of developing new and novel agents necessary for fighting against new strain of
-drug-resistant microbes like bacteria and fungi. However, for researchers to be
-able to experiment with various strains of these AMPs require lots of time and
-expensive costs to test the validity of each variant - and thus not a scalable in
-practice.
+## Abstract
+The rapid increase in the number of antibiotic-resistant bacteria has created an urgent need for new therapeutic agents. Natural antimicrobial peptides (AMPs) are considered as promising substitutes of conventional antibiotics due to their broad spectrum of activity and low rate of producing bacterial resistance. Recently, several AMP prediction tools (based on machine learning and probabilistic approaches) have been developed and made publicly available as  valuable computational resources for identifying candidate AMPs and guiding rational design of AMPs. Unfortunately, the vast majority of these machine learning based predictors are considered black boxes and their potential as reliable AMP prediction tools had been mainly demonstrated using their impressive predictive performance (i.e., AUC scores greater than 0.90). In this study, we utilize sensitivity analysis to shed some lights on how eight black box models, implemented as web-based prediction servers, work. 
 
-To reduce the overall search space for the possible AMPs to experiment on, researchers
-have turned to machine learning and computational model-based approaches for determining
-if a given sequence of proteins are in fact AMPs or Non-AMPs. Currently, there are
-various online web-services which allow for researchers to classify whether the
-given sequences are AMPs. Using these services, they can immensely accelerate their work.
+## Results
+Our results demonstrate that six out of the eight prediction tools make their prediction solely using amino acid compositions and ignore the order of amino acids in the peptide sequence. Moreover, we show that the reported high AUC scores are in part due to bias in the non-AMP data introduced by the strategy for randomly generating (or extracting from nature protein sequences) non-AMP. 
 
-However, one critical concern for these models is the validity of their robustness
-and integrity with regard to their prediction accuracy. Thus, a careful review of
-each of these services would need to be evaluated to ensure that the reported
-results from these papers are in fact correct. Furthermore, upon an observation
-of a very small samples which were randomly shuffled, we have found that the
-models have incorrectly misclassified these samples as valid AMPs.
-
-From the basis of this observation, we have curated a synthesized dataset comprised
-of both real AMP sequences, as well as a collection of randomly shuffled AMP sequences
-of various k-groups - establishing a dataset to expose non-robust models. Through
-establishing a proper baseline on this dataset, we will systematically experiment on
-various online services listed by Gabere et. al to formulate a proper baseline and
-devise new models which will attempt to out-perform the state-of-the-art models.
+---
 
 ## Setup
 All code developed under this repository were executed under Python 3.6.6.
@@ -106,6 +86,3 @@ python3 main.py --data <path-to-fasta-txt> --out <path-to-result-folder> --model
 ```
 
 3. Always check to see if there are any odd signs of failure - there can be cases where a whole mini-batch may have failed (i.e. some blocks of -999 has occured). In this case you may have to wait for a bit (due to server overload), and re-run that particular set again.
-
-## References
-* Gabere, M. N., & Noble, W. S. (2017). Empirical comparison of web-based antimicrobial peptide prediction tools. Bioinformatics, 33(13), 1921-1929.
