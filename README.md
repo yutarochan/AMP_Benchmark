@@ -1,11 +1,16 @@
 # AMP Benchmark
 Anti-Microbial Peptide Classification Benchmark Utility
 
+## Paper
+**"Sequence order does matter: sensitivity analysis of web-based antimicrobial peptide prediction tools"**.
+
+Authors: Yuya Ong and Yasser EL-Manzalawy.
+
 ## Abstract
-The rapid increase in the number of antibiotic-resistant bacteria has created an urgent need for new therapeutic agents. Natural antimicrobial peptides (AMPs) are considered as promising substitutes of conventional antibiotics due to their broad spectrum of activity and low rate of producing bacterial resistance. Recently, several AMP prediction tools (based on machine learning and probabilistic approaches) have been developed and made publicly available as  valuable computational resources for identifying candidate AMPs and guiding rational design of AMPs. Unfortunately, the vast majority of these machine learning based predictors are considered black boxes and their potential as reliable AMP prediction tools had been mainly demonstrated using their impressive predictive performance (i.e., AUC scores greater than 0.90). In this study, we utilize sensitivity analysis to shed some lights on how eight black box models, implemented as web-based prediction servers, work. 
+The rapid increase in the number of antibiotic-resistant bacteria has created an urgent need for new therapeutic agents. Natural antimicrobial peptides (AMPs) are considered as promising substitutes of conventional antibiotics due to their broad spectrum of activity and low rate of producing bacterial resistance. Recently, several AMP prediction tools (based on machine learning and probabilistic approaches) have been developed and made publicly available as  valuable computational resources for identifying candidate AMPs and guiding rational design of AMPs. Unfortunately, the vast majority of these machine learning based predictors are considered black boxes and their potential as reliable AMP prediction tools had been mainly demonstrated using their impressive predictive performance (i.e., AUC scores greater than 0.90). In this study, we utilize sensitivity analysis to shed some lights on how eight black box models, implemented as web-based prediction servers, work.
 
 ## Results
-Our results demonstrate that six out of the eight prediction tools make their prediction solely using amino acid compositions and ignore the order of amino acids in the peptide sequence. Moreover, we show that the reported high AUC scores are in part due to bias in the non-AMP data introduced by the strategy for randomly generating (or extracting from nature protein sequences) non-AMP. 
+Our results demonstrate that six out of the eight prediction tools make their prediction solely using amino acid compositions and ignore the order of amino acids in the peptide sequence. Moreover, we show that the reported high AUC scores are in part due to bias in the non-AMP data introduced by the strategy for randomly generating (or extracting from nature protein sequences) non-AMP.
 
 ---
 
